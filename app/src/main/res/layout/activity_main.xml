@@ -29,7 +29,8 @@
         android:textColor="@color/white"
         android:textSize="20sp" />
 
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:name="com.abhiandroid.fragmentexample.Fragments.FirstFragment"
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

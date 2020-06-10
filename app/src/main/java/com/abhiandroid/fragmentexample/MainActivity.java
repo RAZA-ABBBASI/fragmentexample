@@ -2,20 +2,26 @@
 
 
     import android.os.Bundle;
+    import android.util.Log;
     import android.view.Menu;
     import android.view.MenuItem;
     import android.view.View;
     import android.widget.Button;
+    import android.widget.Toast;
 
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.fragment.app.Fragment;
     import androidx.fragment.app.FragmentManager;
     import androidx.fragment.app.FragmentTransaction;
 
+    import com.abhiandroid.fragmentexample.Fragments.BlankFragment;
     import com.abhiandroid.fragmentexample.Fragments.FirstFragment;
+    import com.abhiandroid.fragmentexample.Fragments.ItemListDialogFragment;
+    import com.abhiandroid.fragmentexample.Fragments.ModalBottomSheetFragment;
     import com.abhiandroid.fragmentexample.Fragments.SecondFragment;
+    import com.abhiandroid.fragmentexample.interfaces.ButtonClickListener;
 
-    public class MainActivity extends AppCompatActivity {
+    public class MainActivity extends AppCompatActivity implements ButtonClickListener {
 
         Button firstFragment, secondFragment;
 
@@ -40,7 +46,9 @@
                 @Override
                 public void onClick(View v) {
                     // load Second Fragment
-                    loadFragment(new SecondFragment());
+                    //loadFragment(new SecondFragment());
+                    loadFragment(ItemListDialogFragment.newInstance(20));
+                    ModalBottomSheetFragment.newInstance(30).show(getSupportFragmentManager(), "dialog");
                 }
             });
 
@@ -77,5 +85,11 @@
             }
 
             return super.onOptionsItemSelected(item);
+        }
+
+        @Override
+        public void onButtonClick(String message) {
+            Log.d("Message",message);
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
     }

@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.abhiandroid.fragmentexample.R;
+import com.abhiandroid.fragmentexample.interfaces.ButtonClickListener;
 
 
 public class FirstFragment extends Fragment {
@@ -21,6 +22,7 @@ public class FirstFragment extends Fragment {
 
     View view;
     Button firstButton,goToSecondButton;
+    ButtonClickListener clickListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,12 +32,14 @@ public class FirstFragment extends Fragment {
         // get the reference of Button
         firstButton = (Button) view.findViewById(R.id.firstButton);
         goToSecondButton = (Button) view.findViewById(R.id.gotToSecondButton);
+        clickListener=(ButtonClickListener)getActivity();
         // perform setOnClickListener on first Button
         firstButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // display a message by using a Toast
-                Toast.makeText(getActivity(), "First Fragment", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), "First Fragment", Toast.LENGTH_LONG).show();
+                clickListener.onButtonClick("First Fragment test");
             }
         });
 
